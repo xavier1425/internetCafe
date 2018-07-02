@@ -12,13 +12,16 @@ var orderSchema = mongoose.Schema({
 var Order = mongoose.model("Order", orderSchema);
 
 var temp;
-Order.find((err, response) => {
+Order.find({}, {"name":true,"_id":false,"price":true,"count":true}, (err, response) => {
 	temp = response;
 });
 
 module.exports = (app) => {
 
 	app.get('/', (req, res) => {
+		Order.find({}, {"name":true,"_id":false,"price":true,"count":true}, (err, response) => {
+			temp = response;
+		});
 		res.render('index', {
 			title: title,
 			subtitle: subtitle

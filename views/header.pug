@@ -15,9 +15,9 @@ html(lang='en')
 		script(src='/javascripts/script.js')
 
 	body(ng-app='myApp', ng-controller='myCtrl')
-		.jumbotron.text-center(style='margin-bottom:0')
+		.text-center(style='margin-bottom:0')
 			h1 #{title}
-			h4 #{subtitle}
+			h5 #{subtitle}
 		nav.navbar.navbar-expand-sm.bg-dark.navbar-dark
 			a.navbar-brand(href='#') #{title}
 			button.navbar-toggler(type='button', data-toggle='collapse', data-target='#collapsibleNavbar')
@@ -36,40 +36,7 @@ html(lang='en')
 						a.nav-link(href='#')
 							i.fa.fa-clock-o
 							|  {{ theTime }}
-
 script.
-	var app =angular.module('myApp', []);
+	var temp = [#{data}]
 
-	app.controller('myCtrl', function($scope, $interval) {
-		$scope.names = [#{data}];
-		$scope.sum = 0;
-		$scope.products = [];
-		$scope.myFunc = function(myE) {
-			$scope.name = myE.name;
-			$scope.price = myE.price;
-			$scope.sum += myE.price;
-			$scope.count = myE.count++;
-		}
-
-		$scope.addItem = function() {
-			$scope.errortext = "";
-			if(!$scope.addMe) {return;}
-			if($scope.products.indexOf($scope.addMe) == -1) {
-			} else {
-				$scope.errortext = "The item is already in your shopping list.";
-			}
-		}
-		$scope.removeItem = function(x) {
-			$scope.errortext = "";
-			$scope.products.splice(x, 1);
-		}
-
-		$scope.clear = function() {
-			$scope.sum = 0;
-		}
-
-		$scope.theTime = new Date().toLocaleTimeString();
-		$interval(function() {
-			$scope.theTime = new Date().toLocaleTimeString();
-		}, 1000);
-	});
+script(src='/javascripts/script.js')
