@@ -1,0 +1,41 @@
+include ./header
+
+.w3-card-2.w3-margin(style='max-width:400px;float:left;margin:15px')
+	header.w3-container.w3-light-grey.w3-padding-16
+		h3 請問您要點甚麼?		
+		table
+			tr.w3-col(ng-repeat='x in names')
+				td.w3-col.s6.w3-padding {{ x.name }}
+				td.w3-col.s6.w3-padding {{ x.price | currency : "NT$" : 0 }}
+					button.pull-right.w3-btn.w3-blue(ng-click='myFunc(x)') 加入
+		br 
+		form.w3-container.w3-light-grey.w3-padding-16(action='/pay', method='post')
+			.w3-col.s10
+				input.w3-input.w3-border.w3-padding(name='sum' value='{{ sum | currency : "NT$" : 0 }}' readonly='')
+			.w3-col.s2
+				button.w3-btn.w3-padding.w3-green(type='submit') 結帳
+			input.w3-btn.w3-red(ng-click='clear()' type='button' value='取消')
+
+ul.w3-ul
+	li.w3-padding-16(ng-repeat='x in names') {{ x.name }}
+		span.w3-btn.w3-right.w3-margin-right(ng-click='removeItem($index)', style='cursor:pointer;') {{ x.count }} &times;
+
+//- input(ng-model='addMe')
+//- button(ng-click='addItem()') Add
+//- p {{errortext}}
+
+
+
+//- form(action='/order', method='post')
+//- 	div
+//- 		label Name:
+//- 		input(name='name')
+//- 	br
+//- 	div
+//- 		label Price:
+//- 		input(name='price')
+//- 	br
+//- 	div
+//- 		input(name='count' value=0 readonly='')
+//- 	br
+//- 	button(type='submit') Send

@@ -1,0 +1,75 @@
+doctype html
+html(lang='en')
+	head
+		title #{title}
+		link(rel='stylesheet', href='/stylesheets/style.css')
+		meta(charset='utf-8')
+		meta(name='viewport', content='width=device-width, initial-scale=1')
+		link(rel='stylesheet', href='https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css')
+		link(rel='stylesheet', href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css')
+		link(rel='stylesheet' href='https://www.w3schools.com/w3css/4/w3.css')
+		script(src='https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js')
+		script(src='https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js')
+		script(src='https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js')
+		script(src='https://ajax.googleapis.com/ajax/libs/angularjs/1.7.2/angular.min.js')
+		script(src='/javascripts/script.js')
+
+	body(ng-app='myApp', ng-controller='myCtrl')
+		.jumbotron.text-center(style='margin-bottom:0')
+			h1 #{title}
+			h4 #{subtitle}
+		nav.navbar.navbar-expand-sm.bg-dark.navbar-dark
+			a.navbar-brand(href='#') #{title}
+			button.navbar-toggler(type='button', data-toggle='collapse', data-target='#collapsibleNavbar')
+				span.navbar-toggler-icon
+			#collapsibleNavbar.collapse.navbar-collapse
+				ul.navbar-nav
+					li.nav-item
+						a.nav-link(href='/')
+							i.fa.fa-home
+							|  首頁
+					li.nav-item
+						a.nav-link(href='/order')
+							i.fa.fa-cutlery
+							|  點餐
+					li.nav-item
+						a.nav-link(href='#')
+							i.fa.fa-clock-o
+							|  {{ theTime }}
+
+script.
+	var app =angular.module('myApp', []);
+
+	app.controller('myCtrl', function($scope, $interval) {
+		$scope.names = [#{data}];
+		$scope.sum = 0;
+		$scope.products = [];
+		$scope.myFunc = function(myE) {
+			$scope.name = myE.name;
+			$scope.price = myE.price;
+			$scope.sum += myE.price;
+			$scope.count = myE.count++;
+		}
+
+		$scope.addItem = function() {
+			$scope.errortext = "";
+			if(!$scope.addMe) {return;}
+			if($scope.products.indexOf($scope.addMe) == -1) {
+			} else {
+				$scope.errortext = "The item is already in your shopping list.";
+			}
+		}
+		$scope.removeItem = function(x) {
+			$scope.errortext = "";
+			$scope.products.splice(x, 1);
+		}
+
+		$scope.clear = function() {
+			$scope.sum = 0;
+		}
+
+		$scope.theTime = new Date().toLocaleTimeString();
+		$interval(function() {
+			$scope.theTime = new Date().toLocaleTimeString();
+		}, 1000);
+	});
