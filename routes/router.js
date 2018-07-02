@@ -35,18 +35,20 @@ module.exports = (app) => {
 		Order.find({}, {"name":true,"_id":false,"price":true,"count":true}, (err, response) => {
 			temp = response;
 		});
-		res.render('order',{
+		res.render('order', {
 			title: title,
 			subtitle: subtitle,
-			data: temp,
+			data: temp
 		});
 	})
 	app.post('/order', (req, res) => {
 		var orderInfo = req.body;
 
-		if(!orderInfo.name) {
+		if(!orderInfo.name || !orderInfo.price) {
 			res.render('show_message', {
-				message: "Sorry, you provided worng info", type: "error"});
+				title: title,
+				subtitle: subtitle,
+				message: "提供的資料不正確，請重新輸入！", type: "error"});
 		} else {
 			var newOrder = new Order({
 				name: orderInfo.name,
@@ -57,19 +59,30 @@ module.exports = (app) => {
 			newOrder.save((err, Order) => {
 				if(err)
 					res.render('show_message', {message: "Database error", type: "error"});
-				else
+				else {
 					res.render('show_message', {
-						message: "New order added!", type: "success", order: orderInfo});
+						title: title,
+						subtitle: subtitle,
+						message: "新增商品成功!", type: "success", order: orderInfo
+					});
+				}
 			});
 		}
 	})
 
 	app.post('/pay', (req, res) => {
 		console.log(req.body.sum);
-		res.render('show_message',{
+		res.render('show_message', {
 			title: title,
 			subtitle: subtitle,
 			order: req.body
+		});
+	})
+	app.get('/edit', (req, res) => {
+		res.render('edit', {
+			title: title,
+			subtitle: subtitle,
+			data: temp
 		});
 	})
 }

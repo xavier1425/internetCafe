@@ -3,28 +3,22 @@ var app =angular.module('myApp', []);
 app.controller('myCtrl', function($scope, $interval) {
 	$scope.names = temp;
 	$scope.sum = 0;
-	$scope.products = [];
-	$scope.myFunc = function(myE) {
+	$scope.addItem = function(myE) {
 		$scope.name = myE.name;
 		$scope.price = myE.price;
-		$scope.sum += myE.price;
 		$scope.count = myE.count++;
+		$scope.sum += $scope.price;
 	}
-
-	$scope.addItem = function() {
-		$scope.errortext = "";
-		if(!$scope.addMe) {return;}
-		if($scope.products.indexOf($scope.addMe) == -1) {
-		} else {
-			$scope.errortext = "The item is already in your shopping list.";
+	$scope.removeItem = function(myE) {
+		if(myE.count) {
+			$scope.count = myE.count--;
+			$scope.sum = $scope.sum - myE.price;
 		}
 	}
-	$scope.removeItem = function(x) {
-		$scope.errortext = "";
-		$scope.products.splice(x, 1);
-	}
-
 	$scope.clear = function() {
+		$scope.names.forEach(function(x) {
+			x.count = 0;
+		})
 		$scope.sum = 0;
 	}
 

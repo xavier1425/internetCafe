@@ -15,7 +15,7 @@ html(lang='en')
 		script(src='/javascripts/script.js')
 
 	body(ng-app='myApp', ng-controller='myCtrl')
-		.text-center(style='margin-bottom:0')
+		.w3-light-grey.w3-padding-16.text-center(style='margin-bottom:0')
 			h1 #{title}
 			h5 #{subtitle}
 		nav.navbar.navbar-expand-sm.bg-dark.navbar-dark
@@ -33,10 +33,12 @@ html(lang='en')
 							i.fa.fa-cutlery
 							|  點餐
 					li.nav-item
+						a.nav-link(href='/edit')
+							i.fa.fa-pencil
+							|  編輯
+					li.nav-item
 						a.nav-link(href='#')
 							i.fa.fa-clock-o
 							|  {{ theTime }}
-script.
-	var temp = [#{data}]
-
-script(src='/javascripts/script.js')
+		script.
+			var temp = [#{data}]
