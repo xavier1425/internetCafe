@@ -1,7 +1,0 @@
-.w3-card-2.w3-container.w3-light-grey.w3-padding-16(style='max-width:800px;float:left;margin:15px')
-	table
-		tr.w3-col(ng-repeat='x in names' ng-model='products')
-			td.w3-col.s6.w3-padding {{ x.name }}
-			td.w3-col.s6.w3-padding {{ x.price | currency : "NT$" : 0 }}
-				span.w3-btn.w3-right.fa.fa-remove(ng-click='removeItem(x)')
-				span.w3-btn.w3-right.fa.fa-pencil(ng-click='addItem(x)')
