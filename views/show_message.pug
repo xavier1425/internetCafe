@@ -1,0 +1,15 @@
+include ./header
+
+.w3-container.w3-light-grey.w3-padding-16
+	if(type == "error")
+		h3(style='color:red') #{message}
+	else if(type == "success")
+		h2 #{message}
+		h3 新菜單, 名稱: #{order.name}, 價格: #{order.price} 已新增！
+	else
+		if(order.sum != 0)
+			h3.w3-margin 總金額為 #{order.sum} ，感謝您！
+		else
+			h3.w3-margin(style='color:red') 您還沒有點餐喔！請確實加入清單
+
+include ./footer

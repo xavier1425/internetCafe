@@ -1,0 +1,20 @@
+include ./header
+
+.w3-card-2.w3-margin(style='max-width:800px;float:left;margin:15px')
+	header.w3-container.w3-light-grey.w3-padding-16
+		h3.w3-margin(style='color:blue') 請問您想點些甚麼?		
+		table
+			tr.w3-col(ng-repeat='x in names' ng-model='products')
+				td.w3-col.s6.w3-padding {{ x.name }}
+				td.w3-col.s6.w3-padding {{ x.price | currency : "NT$" : 0 }}
+					span.w3-btn.w3-right.fa.fa-minus(ng-click='removeItem(x)')
+					span.w3-btn.w3-right.fa.fa-plus(ng-click='addItem(x)')
+					span.w3-btn.w3-right &times; {{ x.count }}
+					
+		form.w3-container.w3-light-grey.w3-padding-16(action='/pay', method='POST')
+			button.w3-btn.w3-padding.w3-green.w3-round-large.w3-right.w3-margin(type='submit') 結帳
+			span.w3-border.w3-padding.w3-margin.w3-right(name='sum' value='') {{ sum | currency : "NT$" : 0 }}
+			input(hidden name='sum' value='{{ sum }}')
+		input.w3-btn.w3-red.w3-round-large.w3-margin(ng-click='clear()' type='button' value='清空')
+
+include ./footer
