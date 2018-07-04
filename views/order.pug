@@ -9,7 +9,7 @@ include ./header
 				td.w3-col.s6.w3-padding {{ x.price | currency : "NT$" : 0 }}
 					span.w3-btn.w3-right.fa.fa-minus(ng-click='removeItem(x)')
 					span.w3-btn.w3-right.fa.fa-plus(ng-click='addItem(x)')
-					span.w3-btn.w3-right &times; {{ x.count }}
+					span.w3-right.w3-padding &times; {{ x.count }}
 					
 		form.w3-container.w3-light-grey.w3-padding-16(action='/pay', method='POST')
 			button.w3-btn.w3-padding.w3-green.w3-round-large.w3-right.w3-margin(type='submit') 結帳

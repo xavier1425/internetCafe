@@ -1,63 +1,40 @@
-const express = require('express')
-const PORT = process.env.PORT || 5000
-const bodyParser = require('body-parser')
-const multer = require('multer')
-const upload = multer()
-const Passport = require('passport')
-const LocalStrategy = require('passport-local').Strategy
+// set up ======================================================================
+// get all the tools we need
+var express = require('express')
+var app = express()
+var port = process.env.PORT || 5000;
+var mongoose = require('mongoose')
+var passport = require('passport')
+var flash = require('connect-flash')
 
-const routes = require('./routes/router')
-const app = express()
+var morgan = require('morgan')
+var cookieParser = require('cookie-parser')
+var bodyParser = require('body-parser')
+var session = require('express-session')
 
-var users = {
-	zack: {
-		username: 'zack',
-		password: '1234',
-		id: 1,
-	},
-	node: {
-		username: 'node',
-		password: '1111',
-		id: 2,
-	}
-}
+var configDB = require('./config/database.js')
 
-var localStrategy = new LocalStrategy({
-	usernameField: 'username',
-	passwordField: 'password',
-	},
-	function(username, password, done) {
-		user = users[username];
+// configuration ===============================================================
+mongoose.connect(configDB.url) // connect to our database
 
-		if(user == null) {
-			return done(null, false, { message: 'Invalid user' })
-		}
+require('./config/passport')(passport) // pass passport for configuration
 
-		if(user.password !== password) {
-			return done(null, false, { message: 'Invalid password' })
-		}
+// set up express application
+app.use(morgan('dev')) // log every request to the console
+app.use(cookieParser()) // read cookies (needed for auth)
+app.use(bodyParser()) // get information from html forms
 
-		done(null, user)
-	}
-)
+app.set('view engine', 'pug') // set up pug for templating
 
-app.set('view engine', 'pug')
-app.set('views', './views')
-
-Passport.use('local', localStrategy)
-app.use(Passport.initialize())
-app.use(bodyParser.json())
-app.use(bodyParser.urlencoded({extended: true}))
-app.use(upload.array())
+// required for passport
+app.use(session({ secret: 'areyouhappynow'})) // session secret
+app.use(passport.initialize())
+app.use(passport.session()) // persistent login sessions
+app.use(flash()) // use connect-flash for flash messages stored in session
 app.use(express.static('public'))
 
-routes(app)
+// routes ======================================================================
+require('./app/routes.js')(app, passport) // load our routes and pass in our app and fully configured passport
 
-app.post('/login',
-	Passport.authenticate('local', { session: false }),
-	function(req, res) {
-		res.send('User ID' + req.user.id)
-	}
-)
-
-app.listen(PORT, () => console.log(`Listening on ${ PORT }`))
+// launch ======================================================================
+app.listen(port, () => console.log(`Listening on ${ port }`))

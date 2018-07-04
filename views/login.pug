@@ -1,0 +1,18 @@
+include ./header
+
+.container
+	.col-sm-6.col-sm-offset-3
+		h1
+			span.fa.fa-sign-in  管理者登入
+		if (message.length)
+			.alert.alert-danger #{message}
+
+		form(action='/login' method='post')
+			.form-group
+				label 帳號
+				input.form-control(type='text' name='username' required)
+			.form-group
+				label 密碼
+				input.form-control(type='password' name='password' required)
+			button.w3-btn.w3-green.w3-round-large.w3-margin(type='submit') 確認
+		hr
