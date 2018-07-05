@@ -1,5 +1,25 @@
 include ./header
 
-.w3-margin(ng-app='myShoppingList', ng-controller='myCtrl')
-	h3(style='color:blue') 歡迎光臨 #{title}！請按點餐服務
-	img(src='/images/home.jpg', weight='720px', height='410px')
+.container
+  h3.my-4(style='color:blue')
+    | 歡迎光臨 #{title} !請按點餐服務
+  .row
+    .col-md-8
+      img.img-fluid(src='/images/home.jpg', alt='')
+    .col-md-4
+      h3.my-3(style='color:green') 網絡食評公信力
+      p
+        | 是認定餐廳成功與否的指標, 現在人們搵食會上食評網找食評看餐廳報告,食物質數,如果看見食評差 少食評,無論真實與否都會直接飛過。食評除了認定餐廳的成功還能量化帶來長遠校益,在互聯網極速傳播。
+      h3.my-3(style='color:green') 邀請食評家到訪試食
+      ul
+        li 獲得他們的正面評價。
+        |             
+        li 這種網絡傳播方式相比傳統人傳人方式威力強。
+        |             
+        li 在地區上有一定影響力及吸引消費者的注意。
+        |             
+        li 令你的餐廳保持足夠的競爭力。
+  hr
+footer.py-5.bg-dark
+  .container
+    p.m-0.text-center.text-white Copyright &copy; internetcafe.herokuapp.com 2018

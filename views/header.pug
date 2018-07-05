@@ -1,53 +1,50 @@
 doctype html
 html(lang='en')
-	head
-		title #{title}
-		link(rel='stylesheet', href='/stylesheets/style.css')
-		meta(charset='utf-8')
-		meta(name='viewport', content='width=device-width, initial-scale=1')
-		link(rel='stylesheet', href='https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css')
-		link(rel='stylesheet', href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css')
-		link(rel='stylesheet' href='https://www.w3schools.com/w3css/4/w3.css')
-		link(rel='stylesheet', href='//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css')
-		script(src='https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js')
-		script(src='https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js')
-		script(src='https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js')
-		script(src='https://ajax.googleapis.com/ajax/libs/angularjs/1.7.2/angular.min.js')
-		script(src='/javascripts/script.js')
+    head
+        title #{title}
+        link(rel='stylesheet', href='/stylesheets/style.css')
+        meta(charset='utf-8')
+        meta(name='viewport', content='width=device-width, initial-scale=1')
+        link(rel='stylesheet', href='https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css')
+        link(rel='stylesheet', href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css')
+        link(rel='stylesheet' href='https://www.w3schools.com/w3css/4/w3.css')
+        link(rel='stylesheet', href='//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css')
+        script(src='https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js')
+        script(src='https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js')
+        script(src='https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js')
+        script(src='https://ajax.googleapis.com/ajax/libs/angularjs/1.7.2/angular.min.js')
+        script(src='/javascripts/script.js')
 
-	body(ng-app='myApp', ng-controller='myCtrl')
-		.w3-light-grey.w3-padding-16.text-center(style='margin-bottom:0')
-			h1 #{title}
-			h5 #{subtitle}
-		nav.navbar.navbar-expand-sm.bg-dark.navbar-dark
-			a.navbar-brand(href='#') #{title}
-			button.navbar-toggler(type='button', data-toggle='collapse', data-target='#collapsibleNavbar')
-				span.navbar-toggler-icon
-			#collapsibleNavbar.collapse.navbar-collapse
-				ul.navbar-nav
-					li.nav-item
-						a.nav-link(href='/')
-							i.fa.fa-home
-							|  首頁
-					li.nav-item
-						a.nav-link(href='/order')
-							i.fa.fa-cutlery
-							|  點餐
-					li.nav-item
-						a.nav-link(href='/edit')
-							i.fa.fa-pencil
-							|  編輯
-					li.nav-item
-						a.nav-link(href='/login')
-							i.fa.fa-user
-							|  登入
-					//- li.nav-item
-					//- 	a.nav-link(href='/signup')
-					//- 		i.fa.fa-file
-					//- 		|  註冊
-					li.nav-item
-						a.nav-link(href='#')
-							i.fa.fa-clock-o
-							|  {{ theTime }}
-		script.
-			var temp = [#{data}]
+    body(ng-app='myApp', ng-controller='myCtrl')
+        nav.navbar.navbar-expand-sm.bg-dark.navbar-dark
+            a.navbar-brand(href='#') #{title}
+            button.navbar-toggler(type='button', data-toggle='collapse', data-target='#collapsibleNavbar')
+                span.navbar-toggler-icon
+            #collapsibleNavbar.collapse.navbar-collapse
+                ul.navbar-nav
+                    li.nav-item
+                        a.nav-link(href='/')
+                            i.fa.fa-home
+                            |  首頁
+                    li.nav-item
+                        a.nav-link(href='/order')
+                            i.fa.fa-cutlery
+                            |  點餐
+                    li.nav-item
+                        a.nav-link(href='/edit')
+                            i.fa.fa-pencil
+                            |  編輯
+                    li.nav-item
+                        a.nav-link(href='/login')
+                            i.fa.fa-user
+                            |  登入
+                    //- li.nav-item
+                    //-     a.nav-link(href='/signup')
+                    //-         i.fa.fa-file
+                    //-         |  註冊
+                    li.nav-item
+                        a.nav-link(href='#')
+                            i.fa.fa-clock-o
+                            |  {{ theTime }}
+            script.
+                var temp = [#{data}]
