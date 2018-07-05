@@ -4,6 +4,7 @@ include ./header
 	.col-sm-6.col-sm-offset-3
 		h1
 			span.fa.fa-sign-in  管理者登入
+		hr
 		if (message.length)
 			.alert.alert-danger #{message}
 
@@ -15,4 +16,3 @@ include ./header
 				label 密碼
 				input.form-control(type='password' name='password' required)
 			button.w3-btn.w3-green.w3-round-large.w3-margin(type='submit') 確認
-		hr

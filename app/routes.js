@@ -1,5 +1,4 @@
-var title = "大都市網路咖啡館",
-	subtitle = "網咖點餐系統"
+var title = "大都市網路咖啡館"
 
 var Order = require('../app/models/order'), temp
 
@@ -18,11 +17,8 @@ module.exports = (app, passport) => {
 		})
 		res.render('index', {
 			title: title,
-			subtitle: subtitle
 		})
 	})
-	// app.post('/', (req, res) => {
-	// })
 
 	app.get('/order', (req, res) => {
 		Order.find({}, {"name":true,"_id":false,"price":true,"count":true}, (err, response) => {
@@ -30,7 +26,6 @@ module.exports = (app, passport) => {
 		})
 		res.render('order', {
 			title: title,
-			subtitle: subtitle,
 			data: temp
 		})
 	})
@@ -38,49 +33,8 @@ module.exports = (app, passport) => {
 		console.log(req.body.sum) // display total
 		res.render('show_message', {
 			title: title,
-			subtitle: subtitle,
 			order: req.body
 		})
-	})
-
-	app.get('/edit', (req, res) => {
-		Order.find({}, {"name":true,"_id":false,"price":true,"count":true}, (err, response) => {
-			temp = response;
-		})
-		res.render('edit', {
-			title: title,
-			subtitle: subtitle,
-			data: temp
-		})
-	})
-	app.post('/edit', (req, res) => {
-		var orderInfo = req.body;
-
-		if(!orderInfo.name || !orderInfo.price) {
-			res.render('show_message', {
-				title: title,
-				subtitle: subtitle,
-				message: "提供的資料不正確，請重新輸入！", type: "error"});
-		} else {
-			var newOrder = new Order({
-				name: orderInfo.name,
-				price: orderInfo.price,
-				count: orderInfo.count
-			})
-
-			newOrder.save((err, Order) => {
-				if(err)
-					res.render('show_message', {message: "Database error", type: "error"});
-				else {
-					res.render('show_message', {
-						title: title,
-						subtitle: subtitle,
-						message: "新增商品成功!", type: "success", order: orderInfo
-					});
-					console.log(req.body) // display create product
-				}
-			});
-		}
 	})
 
 	app.delete('/orders/:id', (req, res) => {
@@ -99,13 +53,12 @@ module.exports = (app, passport) => {
 		// render the page and pass in any flash data if it exists
 		res.render('login', {
 			title: title,
-			subtitle: subtitle,
 			message: req.flash('loginMessage')
 		})
 	})
 	// process the login form
 	app.post('/login', passport.authenticate('local-login', {
-		successRedirect : '/profile',
+		successRedirect : '/edit',
 		failureRedirect : '/login',
 		failureFlash : true
 	}))
@@ -119,7 +72,6 @@ module.exports = (app, passport) => {
 	// 	// render the page and pass in any flash data if it exists
 	// 	res.render('signup', {
 	// 		title: title,
-	// 		subtitle: subtitle,
 	// 		message: req.flash('signupMessage')
 	// 	})
 	// })
@@ -131,17 +83,46 @@ module.exports = (app, passport) => {
 	// }))
 
 	// =====================================
-    // PROFILE SECTION =====================
+    // EDIT ================================
     // =====================================
     // we will want this protected so you have to be logged in to visit
     // we will use route middleware to verify this (the isLoggedIn function)
-	app.get('/profile', isLoggedIn, (req, res) => {
-		res.render('profile', {
-			title: title,
-			subtitle: subtitle,
-			user: req.user
-			// get the user out of session and pass to template
+	app.get('/edit', isLoggedIn, (req, res) => {
+		Order.find({}, {"name":true,"_id":false,"price":true,"count":true}, (err, response) => {
+			temp = response;
 		})
+		res.render('edit', {
+			title: title,
+			user: req.user, // get the user out of session and pass to template
+			data: temp
+		})
+	})
+	app.post('/edit', (req, res) => {
+		var orderInfo = req.body;
+
+		if(!orderInfo.name || !orderInfo.price) {
+			res.render('show_message', {
+				title: title,
+				message: "提供的資料不正確，請重新輸入！", type: "error"});
+		} else {
+			var newOrder = new Order({
+				name: orderInfo.name,
+				price: orderInfo.price,
+				count: orderInfo.count
+			})
+
+			newOrder.save((err, Order) => {
+				if(err)
+					res.render('show_message', {message: "Database error", type: "error"});
+				else {
+					res.render('show_message', {
+						title: title,
+						message: "新增商品成功!", type: "success", order: orderInfo
+					});
+					console.log(req.body) // display create product
+				}
+			});
+		}
 	})
 
 	// =====================================

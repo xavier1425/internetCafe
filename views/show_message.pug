@@ -1,15 +1,17 @@
 include ./header
 
-.w3-container.w3-light-grey.w3-padding-16
-	if(type == "error")
-		h3(style='color:red') #{message}
-	else if(type == "success")
-		h2 #{message}
-		h3 新菜單, 名稱: #{order.name}, 價格: #{order.price} 已新增！
-	else
-		if(order.sum != 0)
-			h3.w3-margin 總金額為 #{order.sum} 元，感謝您！
-		else
-			h3.w3-margin(style='color:red') 您還沒有點餐喔！請確實加入清單
-
-include ./footer
+.col-md-12.col-md-offset-2
+	.w3-card-2.w3-margin(style='max-width:800px;float:left;margin:15px')
+		header.w3-container.w3-light-grey.w3-padding-16
+			if(type == "error")
+				h3(style='color:red') #{message}
+			else if(type == "success")
+				h2 #{message}
+				h3 新菜單, 名稱: #{order.name}, 價格: #{order.price} 已新增！
+			else
+				if(order.sum != 0)
+					h3.w3-margin 總金額為 #{order.sum} 元，感謝您！
+				else
+					h3.w3-margin(style='color:red') 您還沒有點餐喔！請確實加入清單
+			form.w3-margin.container
+				button.w3-btn.w3-blue.w3-round-large(type='submit' onclick='history.back()') 回上一頁
