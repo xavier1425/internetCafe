@@ -3,16 +3,22 @@ include ./header
 .container
 	.col-sm-6.col-sm-offset-3
 		h1
-			span.fa.fa-sign-in  管理者登入
+			span.fa.fa-sign-in  註冊
 		hr
 		if (message.length)
 			.alert.alert-danger #{message}
 
-		form(action='/login' method='post')
+		form(action='/signup' method='post')
 			.form-group
 				label 帳號
 				input.form-control(type='text' name='username' required)
 			.form-group
 				label 密碼
 				input.form-control(type='password' name='password' required)
-			button.w3-btn.w3-green.w3-round-large.w3-margin(type='submit') 確認
+
+			button.w3-btn.w3-green.w3-round-large.w3-margin(type='submit') 註冊
+		hr
+		p 已經擁有帳號了嗎? 
+			a(href='/login') 登入
+		p 或是回到 
+			a(href='/') 首頁

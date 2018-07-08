@@ -1,0 +1,21 @@
+include ../index/loginHeader
+
+.container
+	h3
+		a(href='/edit') Product List
+	h1 #{title}
+	- var url = '/update/' + product._id
+	form(action=url method='post')
+		table
+			tbody
+				tr
+					td Name
+					td
+						input(type='text' name='name' value=product.name)
+				tr
+					td Unit Price
+					td
+						input(type='number' name='unitPrice' value=product.unitPrice)
+				tr
+					td(colspan='2')
+						button(type='submit') Update

@@ -5,14 +5,14 @@ app.controller('myCtrl', function($scope, $interval) {
 	$scope.sum = 0
 	$scope.addItem = function(myE) {
 		$scope.name = myE.name
-		$scope.price = myE.price
+		$scope.price = myE.unitPrice
 		$scope.count = myE.count++
 		$scope.sum += $scope.price
 	}
 	$scope.removeItem = function(myE) {
 		if(myE.count) {
 			$scope.count = myE.count--;
-			$scope.sum = $scope.sum - myE.price;
+			$scope.sum = $scope.sum - myE.unitPrice;
 		}
 	}
 	$scope.clear = function() {

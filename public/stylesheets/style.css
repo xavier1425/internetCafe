@@ -1,18 +1,5 @@
 /* index */
 
-/*a {
-    padding: 5px 20px;
-    border: none;
-    background: #7DCD85;
-    color: #FFFFFF;
-    font-size: 14px;
-    text-decoration: none;
-}
-
-a:hover {
-    background: #6BB072;
-}*/
-
 .table {
     border-collapse: collapse;
     font-size: 16px;
@@ -78,7 +65,7 @@ table tr:nth-child(even) {
     color: #f00;
     font-size: 12px;
 }
-	
+  
 .btn {
     background-color: Success;
     border: none;

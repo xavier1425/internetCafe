@@ -7,7 +7,7 @@ include ./header
 			table
 				tr.w3-col(ng-repeat='x in names' ng-model='products')
 					td.w3-col.s6.w3-padding {{ x.name }}
-					td.w3-col.s6.w3-padding {{ x.price | currency : "NT$" : 0 }}
+					td.w3-col.s6.w3-padding {{ x.unitPrice | currency : "NT$" : 0 }}
 						span.w3-btn.w3-right.fa.fa-minus(ng-click='removeItem(x)')
 						span.w3-btn.w3-right.fa.fa-plus(ng-click='addItem(x)')
 						span.w3-right.w3-padding &times; {{ x.count }}

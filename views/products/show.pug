@@ -1,0 +1,24 @@
+include ../index/loginHeader
+
+.container
+	h3
+		a(href='/edit') Product List
+	br
+	h3
+		a(href='/create') Create Product
+	h1 #{title}
+	table
+		tbody
+			tr
+				td Name
+				td :
+				td #{product.name}
+			tr
+				td Unit Price
+				td :
+				td NT$ #{product.unitPrice}
+	h3
+		a(href='/edit/' + product._id) EDIT
+	- var url = '/delete/' + product._id
+	form(action=url method='post')
+		button(type='submit') DELETE

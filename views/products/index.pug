@@ -1,0 +1,21 @@
+include ../index/loginHeader
+
+.container
+	h3
+		a(href='/create') Create Product
+	h1 #{title}
+	if(products.length)
+		table
+			thead
+				tr
+					th Product Name
+					th Unit Price
+			tbody
+				each val in products
+					tr
+						td
+							a(href='/show/' + val._id) #{val.name}
+						td #{val.unitPrice}
+	else
+		div
+			i(style='background-color:powderblue') No products found.

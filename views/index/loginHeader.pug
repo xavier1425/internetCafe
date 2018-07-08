@@ -2,9 +2,9 @@ doctype html
 html(lang='en')
     head
         title #{title}
-        link(rel='stylesheet', href='/stylesheets/style.css')
         meta(charset='utf-8')
         meta(name='viewport', content='width=device-width, initial-scale=1')
+        link(rel='stylesheet', href='/stylesheets/style.css')
         link(rel='stylesheet', href='https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css')
         link(rel='stylesheet', href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css')
         link(rel='stylesheet' href='https://www.w3schools.com/w3css/4/w3.css')
@@ -17,31 +17,19 @@ html(lang='en')
 
     body(ng-app='myApp', ng-controller='myCtrl')
         nav.navbar.navbar-expand-sm.bg-dark.navbar-dark
-            a.navbar-brand(href='#') #{title}
+            a.navbar-brand(href='#') 菜單編輯系統
             button.navbar-toggler(type='button', data-toggle='collapse', data-target='#collapsibleNavbar')
                 span.navbar-toggler-icon
             #collapsibleNavbar.collapse.navbar-collapse
                 ul.navbar-nav
                     li.nav-item
-                        a.nav-link(href='/')
-                            i.fa.fa-home
-                            |  首頁
-                    li.nav-item
-                        a.nav-link(href='/order')
-                            i.fa.fa-cutlery
-                            |  點餐
-                    //- li.nav-item
-                    //-     a.nav-link(href='/edit')
-                    //-         i.fa.fa-pencil
-                    //-         |  編輯
-                    li.nav-item
-                        a.nav-link(href='/login')
+                        a.nav-link(href='#')
                             i.fa.fa-user
-                            |  登入
-                    //- li.nav-item
-                    //-     a.nav-link(href='/signup')
-                    //-         i.fa.fa-file
-                    //-         |  註冊
+                            |  使用者已登入
+                    li.nav-item
+                        a.nav-link(href='/logout')
+                            i.fa.fa-sign-out
+                            |  登出
                     li.nav-item
                         a.nav-link(href='#')
                             i.fa.fa-clock-o
