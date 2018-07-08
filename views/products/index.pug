@@ -1,15 +1,15 @@
-include ../index/loginHeader
+include ./adminHeader
 
 .container
 	h3
-		a(href='/create') Create Product
+		a(href='/create') 新增商品
 	h1 #{title}
 	if(products.length)
 		table
 			thead
 				tr
-					th Product Name
-					th Unit Price
+					th 商品名稱
+					th 商品價格
 			tbody
 				each val in products
 					tr

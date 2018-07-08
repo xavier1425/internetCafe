@@ -2,7 +2,8 @@ include ./header
 
 .container
   h3.my-4(style='color:blue')
-    | 歡迎光臨 #{title} !請按點餐服務
+    | 歡迎光臨 #{title} !
+    | 請登入進行點餐
   .row
     .col-md-8
       img.img-fluid(src='/images/home.jpg', alt='')
@@ -19,7 +20,7 @@ include ./header
         li 在地區上有一定影響力及吸引消費者的注意。
         |             
         li 令你的餐廳保持足夠的競爭力。
-  hr
-//- footer.py-5.bg-dark
-//-   .container
-//-     p.m-0.text-center.text-white Copyright &copy; internetcafe.herokuapp.com 2018
+hr
+footer.py-5
+  .container.bg-dark
+    p.m-0.text-center.text-white Copyright &copy; internetcafe.herokuapp.com 2018

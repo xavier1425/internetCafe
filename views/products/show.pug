@@ -1,24 +1,24 @@
-include ../index/loginHeader
+include ./adminHeader
 
 .container
 	h3
-		a(href='/edit') Product List
+		a(href='/edit') 商品清單
 	br
 	h3
-		a(href='/create') Create Product
+		a(href='/create') 新增商品
 	h1 #{title}
 	table
 		tbody
 			tr
-				td Name
+				td 商品名稱
 				td :
 				td #{product.name}
 			tr
-				td Unit Price
+				td 商品價格
 				td :
 				td NT$ #{product.unitPrice}
 	h3
-		a(href='/edit/' + product._id) EDIT
+		a(href='/edit/' + product._id) 編輯
 	- var url = '/delete/' + product._id
 	form(action=url method='post')
-		button(type='submit') DELETE
+		button(type='submit') 刪除

@@ -21,7 +21,7 @@ indexController.list = (req, res) => {
 		} else {
 			res.render('../views/index/order', {
 				products: products,
-				title: title
+				title: title,
 			})
 		}
 	})
@@ -40,6 +40,15 @@ indexController.pay = (req, res) => {
 indexController.login = (req, res) => {
 	// render the page and pass in any flash data if it exists
 	res.render('../views/index/login', {
+		title: title,
+		message: req.flash('loginMessage')
+	})
+}
+
+// Login function (admin)
+indexController.admin = (req, res) => {
+	// render the page and pass in any flash data if it exists
+	res.render('../views/index/adminLogin', {
 		title: title,
 		message: req.flash('loginMessage')
 	})

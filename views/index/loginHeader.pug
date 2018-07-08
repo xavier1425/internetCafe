@@ -17,7 +17,7 @@ html(lang='en')
 
     body(ng-app='myApp', ng-controller='myCtrl')
         nav.navbar.navbar-expand-sm.bg-dark.navbar-dark
-            a.navbar-brand(href='#') 菜單編輯系統
+            a.navbar-brand(href='#') #{title}
             button.navbar-toggler(type='button', data-toggle='collapse', data-target='#collapsibleNavbar')
                 span.navbar-toggler-icon
             #collapsibleNavbar.collapse.navbar-collapse
@@ -25,7 +25,11 @@ html(lang='en')
                     li.nav-item
                         a.nav-link(href='#')
                             i.fa.fa-user
-                            |  使用者已登入
+                            |  #{user} 已登入
+                    li.nav-item
+                        a.nav-link(href='/order')
+                            i.fa.fa-cutlery
+                            |  點餐
                     li.nav-item
                         a.nav-link(href='/logout')
                             i.fa.fa-sign-out
@@ -35,4 +39,4 @@ html(lang='en')
                             i.fa.fa-clock-o
                             |  {{ theTime }}
             script.
-                var temp = [#{data}]
+                var temp = [#{products}]

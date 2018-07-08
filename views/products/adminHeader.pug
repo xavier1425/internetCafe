@@ -17,38 +17,18 @@ html(lang='en')
 
     body(ng-app='myApp', ng-controller='myCtrl')
         nav.navbar.navbar-expand-sm.bg-dark.navbar-dark
-            a.navbar-brand(href='#') #{title}
+            a.navbar-brand(href='#') 菜單編輯系統
             button.navbar-toggler(type='button', data-toggle='collapse', data-target='#collapsibleNavbar')
                 span.navbar-toggler-icon
             #collapsibleNavbar.collapse.navbar-collapse
                 ul.navbar-nav
                     li.nav-item
-                        a.nav-link(href='/')
-                            i.fa.fa-home
-                            |  首頁
-                    //- li.nav-item
-                    //-     a.nav-link(href='/order')
-                    //-         i.fa.fa-cutlery
-                    //-         |  點餐
-                    //- li.nav-item
-                    //-     a.nav-link(href='/edit')
-                    //-         i.fa.fa-pencil
-                    //-         |  編輯
-                    li.nav-item
-                        a.nav-link(href='/login')
-                            i.fa.fa-user
-                            |  登入
-                    //- li.nav-item
-                    //-     a.nav-link(href='/signup')
-                    //-         i.fa.fa-file
-                    //-         |  註冊
+                        a.nav-link(href='/logout')
+                            i.fa.fa-sign-out
+                            |  登出
                     li.nav-item
                         a.nav-link(href='#')
                             i.fa.fa-clock-o
                             |  {{ theTime }}
-                    li.nav-item
-                        a.nav-link(href='/admin')
-                            i.fa.fa-gear
-                            |  管理員登入
             script.
-                var temp = [#{products}]
+                var temp = [#{data}]

@@ -15,7 +15,7 @@ productController.list = (req, res) => {
 		} else {
 			res.render('../views/products/index', {
 				products: products,
-				title: "Product List"
+				title: "商品列表"
 			})
 		}
 	})
@@ -29,7 +29,7 @@ productController.show = (req, res) => {
 		} else {
 			res.render('../views/products/show', {
 				product: product,
-				title: "Product Detail"
+				title: "商品內容"
 			})
 		}
 	})
@@ -38,7 +38,7 @@ productController.show = (req, res) => {
 // Add create product funciton, it just redirects to create the page
 productController.create = (req, res) => {
 	res.render('../views/products/create', {
-		title: "Create Product"
+		title: "新增商品"
 	})
 }
 
@@ -64,7 +64,7 @@ productController.edit = (req, res) => {
 		} else {
 			res.render('../views/products/edit', {
 				product: product,
-				title: "Edit Product"
+				title: "編輯商品"
 			})
 		}
 	})
